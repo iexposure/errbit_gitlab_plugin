@@ -12,10 +12,10 @@
     <%= notice.where %>
 
 ### Occured ###
-    <%= notice.created_at.to_s(:precise) %>
+    <%= notice.created_at.to_s(:micro) %>
 
 ### Similar ###
-    <%= [notice.problem.notices_count - 1, 1].max %>
+    <%= (notice.problem.notices_count - 1).to_s %>
 
 ## Params ##
 ```ruby
