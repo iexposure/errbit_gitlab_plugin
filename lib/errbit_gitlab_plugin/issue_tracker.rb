@@ -121,7 +121,23 @@ module ErrbitGitlabPlugin
         g.create_issue(gitlab_project_id, title, description: body, labels: options[:labels])
       end
 
-      format('%s/%s', url, ticket.id)
+      format('%s/%s', url, ticket.iid)
+    end
+
+    def close_issue(issue_link, closed_by = nil)
+      iid = issue_link.to_s.split("/").last.to_i
+
+      if iid.zero?
+        false
+      else
+        with_gitlab do |g|
+          g.close_issue(gitlab_project_id, iid)
+        end
+
+        true
+      end
+    rescue Gitlab::Error
+      false
     end
 
     private
