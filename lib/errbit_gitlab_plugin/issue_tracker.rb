@@ -61,7 +61,7 @@ module ErrbitGitlabPlugin
     # The rendered template is then passed to any #create_issue call.
     #
     def render_body_args
-      ['errbit_gitlab_plugin/issue', :formats => [:md]]
+      [{template: 'errbit_gitlab_plugin/issue_markdown'}]
     end
 
     #
